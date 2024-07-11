@@ -1,0 +1,8 @@
+{
+    "scriptId": "1hyM2ufKYZW0tVWyNKsBZ0gqqhs6ftL2_A91xk0alYC3DDsHWJOREL4Ng",     
+    "rootDir": "src",
+    "projectId": "project-id-0000000000000000000",
+    "fileExtension": "js",
+    "filePushOrder": ["src/File1.js", "src/File1.js", "src/File1.js"],
+    "parentId": "XXXXXXXXXXXXXXXXXXXXXX"
+}
