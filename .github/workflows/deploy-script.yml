@@ -1,11 +1,9 @@
 name: Deploy Script
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [main, develop]
-  release:
-    types: [published]
+  pull_request:
+    branches:
+      - main
   schedule:
     - cron: "0 0 * * SUN"
 
