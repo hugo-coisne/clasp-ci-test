@@ -50,8 +50,15 @@ jobs:
         if: ${{github.event_name	!= 'schedule' }}
         uses: actions/checkout@v2
 
-      - name: Set scriptId in .clasp.json file
-        id: set-script-id
+      - name: Set scriptId in .clasp.json file for preprod
+        id: set-preprod-script-id
+        if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID}}
+        run: jq '.scriptId = "${{env.SCRIPT_ID}}"' .clasp.json > /tmp/.clasp.json && mv /tmp/.clasp.json .clasp.json
+        env:
+          SCRIPT_ID: ${{secrets.SCRIPT_ID2}}
+
+      - name: Set scriptId in .clasp.json file for prod
+        id: set-prod-script-id
         if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID}}
         run: jq '.scriptId = "${{env.SCRIPT_ID}}"' .clasp.json > /tmp/.clasp.json && mv /tmp/.clasp.json .clasp.json
         env:
