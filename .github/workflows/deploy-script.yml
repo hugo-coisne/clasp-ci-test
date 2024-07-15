@@ -52,14 +52,14 @@ jobs:
 
       - name: Set scriptId in .clasp.json file for preprod
         id: set-preprod-script-id
-        if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID}}
+        if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID && github.ref == 'refs/heads/develop'}}
         run: jq '.scriptId = "${{env.SCRIPT_ID}}"' .clasp.json > /tmp/.clasp.json && mv /tmp/.clasp.json .clasp.json
         env:
           SCRIPT_ID: ${{secrets.SCRIPT_ID2}}
 
       - name: Set scriptId in .clasp.json file for prod
         id: set-prod-script-id
-        if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID}}
+        if: ${{ github.event_name	!= 'schedule' && env.SCRIPT_ID && github.ref == 'refs/heads/main'}}
         run: jq '.scriptId = "${{env.SCRIPT_ID}}"' .clasp.json > /tmp/.clasp.json && mv /tmp/.clasp.json .clasp.json
         env:
           SCRIPT_ID: ${{secrets.SCRIPT_ID}}
