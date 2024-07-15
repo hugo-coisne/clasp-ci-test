@@ -1,9 +1,10 @@
 name: Deploy Script
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+      - develop
   schedule:
     - cron: "0 0 * * SUN"
 
